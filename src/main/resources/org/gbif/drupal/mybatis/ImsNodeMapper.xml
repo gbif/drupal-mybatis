@@ -12,7 +12,11 @@
   <!-- Auto-mapping and eager loading of sub resources  -->
   <resultMap id="CONTACT_MAP" type="Contact" autoMapping="true">
     <id property="key" column="cid"/>
-    <result property="position" column="job_position" />
+    <result property="position" column="job_position" typeHandler="StringArrayTypeHandler"/>
+    <result property="email" column="email" typeHandler="StringArrayTypeHandler"/>
+    <result property="phone" column="phone" typeHandler="StringArrayTypeHandler"/>
+    <result property="address" column="address" typeHandler="StringArrayTypeHandler"/>
+    <result property="homepage" column="homepage" typeHandler="UriArrayTypeHandler"/>
   </resultMap>
 
   <select id="get" resultType="Node" resultMap="NODE_MAP">

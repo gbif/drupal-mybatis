@@ -13,6 +13,8 @@ import org.gbif.drupal.mybatis.ContactTypeHandler;
 import org.gbif.drupal.mybatis.DrupalTimestampTypeHandler;
 import org.gbif.drupal.mybatis.ImsNodeMapper;
 import org.gbif.drupal.mybatis.ParticipationStatusTypeHandler;
+import org.gbif.drupal.mybatis.StringArrayTypeHandler;
+import org.gbif.drupal.mybatis.UriArrayTypeHandler;
 import org.gbif.drupal.mybatis.UserMapper;
 import org.gbif.drupal.mybatis.UserRoleTypeHandler;
 import org.gbif.drupal.mybatis.UserServiceImpl;
@@ -27,6 +29,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import com.google.inject.Scopes;
+import org.mybatis.guice.MyBatisModule;
 
 /**
  * This Module should not be used, use the {@link DrupalMyBatisModule} instead.
@@ -54,6 +57,9 @@ public class InternalDrupalMyBatisModule extends MyBatisModule {
     addAlias("Contact").to(Contact.class);
     addAlias("Country").to(Country.class);
     addAlias("Language").to(Language.class);
+    addAlias("StringArrayTypeHandler").to(StringArrayTypeHandler.class);
+    addAlias("UriArrayTypeHandler").to(UriArrayTypeHandler.class);
+
 
     // mybatis mapper
     addMapperClass(UserMapper.class);
