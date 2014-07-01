@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.gbif.drupal.mybatis.UserMapper" >
+
+  <resultMap id="ResultMapUser" type="User" >
+    <id column="name" property="userName" />
+    <result column="uid" property="key" />
+    <result column="mail" property="email" />
+    <result column="fname" property="firstName" />
+    <result column="lname" property="lastName" />
+    <result column="pass" property="passwordHash" />
+    <result column="login" property="lastLogin" />
+
+    <collection property="roles" column="uid" javaType="java.util.HashSet" ofType="UserRole" select="selectRole" />
+  </resultMap>
+
+  <sql id="userColumns">u.uid, u.name, u.mail, fn.field_firstname_value as fname, ln.field_lastname_value as lname, u.login, u.status, u.pass</sql>
+
+  <sql id="usersJoin">
+    users u
+    left join field_data_field_firstname fn on u.uid=fn.entity_id and fn.entity_type='user'
+    left join field_data_field_lastname ln on u.uid=ln.entity_id and ln.entity_type='user'
+  </sql>
+
+  <select id="get" resultMap="ResultMapUser" parameterType="java.lang.String">
+    select <include refid="userColumns"/>
+    from <include refid="usersJoin"/>
+    where u.name = #{x}
+  </select>
+
+  <select id="getBySession" resultMap="ResultMapUser" parameterType="java.lang.String">
+    select <include refid="userColumns"/>
+    from <include refid="usersJoin"/> join sessions s on u.uid=s.uid
+    where s.sid = #{x}
+  </select>
+
+  <select id="selectRole" resultType="UserRole" parameterType="java.lang.Integer">
+    SELECT rid FROM users_roles WHERE uid = #{uid}
+  </select>
+
+</mapper>
