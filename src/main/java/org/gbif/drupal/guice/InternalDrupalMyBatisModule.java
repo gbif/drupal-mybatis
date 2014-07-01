@@ -29,7 +29,6 @@ import java.util.Date;
 import java.util.UUID;
 
 import com.google.inject.Scopes;
-import org.mybatis.guice.MyBatisModule;
 
 /**
  * This Module should not be used, use the {@link DrupalMyBatisModule} instead.
