@@ -5,6 +5,10 @@
   <!-- Auto-mapping and eager loading of sub resources  -->
   <resultMap id="NODE_MAP" type="Node" autoMapping="true">
     <id property="country" column="country"/>
+    <result property="email" column="email" typeHandler="StringArrayTypeHandler"/>
+    <result property="phone" column="phone" typeHandler="StringArrayTypeHandler"/>
+    <result property="address" column="address" typeHandler="StringArrayTypeHandler"/>
+    <result property="homepage" column="homepage" typeHandler="UriArrayTypeHandler"/>
     <result property="participantSince" column="participantSince" typeHandler="org.gbif.drupal.mybatis.ParticipantSinceTypeHandler"/>
     <collection property="contacts" column="imsId" select="listContacts"/>
   </resultMap>
@@ -23,7 +27,7 @@
 SELECT p.ParticipantID AS imsId, c.ISO2 AS country, n.Name_Full AS title, p.Name_Full AS participantTitle, p.Name_Short AS abbreviation, n.URL AS homepage,
   p.Name_Full AS participantTitle, p.Member_AsOf AS participantSince, p.PublicDescription AS description,
   null AS modified,
-  i.Name AS institution, i.Address AS address, i.City AS city, i.ZipCode AS postalCode, i.State AS province, i.Telephone AS phone, i.Email AS email,
+  i.Name AS organization, i.Address AS address, i.City AS city, i.ZipCode AS postalCode, i.State AS province, i.Telephone AS phone, i.Email AS email,
   p.GBIFmembership, null AS Region, p.MOU2012_Date AS MOU2012_Date
 
 FROM gbifims_Node n
