@@ -13,6 +13,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  *
  */
@@ -31,7 +33,10 @@ public class ImsNodeMapperIT {
 
   @Test
   public void testGet() throws Exception {
-    Node n = mapper.get(361);
+    // Spain
+    Node n = mapper.get(1);
     System.out.print(n);
+    assertEquals(3, n.getAddress().size());
+    assertEquals("Madrid", n.getCity());
   }
 }

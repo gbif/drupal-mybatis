@@ -18,18 +18,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
 /**
  * Reads and writes single string columns as if they were java lists.
+ * New lines (\n) are taken as line delimiters in both reads and writes.
  */
 public class StringArrayTypeHandler extends BaseTypeHandler<List<String>> {
+  private final Joiner NEW_LINE_JOINER = Joiner.on("\n").skipNulls();
+  private final Splitter NEW_LINE_SPLITTER = Splitter.on("\n").omitEmptyStrings().trimResults();
 
   @Override
   public void setNonNullParameter(PreparedStatement ps, int i, List<String> parameter, JdbcType jdbcType) throws SQLException {
-    ps.setString(i, parameter.get(0));
+    ps.setString(i, NEW_LINE_JOINER.join(parameter));
   }
 
   @Override
@@ -48,7 +54,8 @@ public class StringArrayTypeHandler extends BaseTypeHandler<List<String>> {
   }
 
   private List<String> toList(String str) throws SQLException {
-    if (str == null) return Lists.newArrayList();
-    return Lists.newArrayList(str);
+    if (Strings.isNullOrEmpty(str)) return Lists.newArrayList();
+    return Lists.newArrayList(NEW_LINE_SPLITTER.split(str));
   }
+
 }
