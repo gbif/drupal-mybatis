@@ -24,18 +24,34 @@
   </resultMap>
 
   <select id="get" resultType="Node" resultMap="NODE_MAP">
-SELECT p.ParticipantID AS imsId, c.ISO2 AS country, n.Name_Full AS title, p.Name_Full AS participantTitle, p.Name_Short AS abbreviation, n.URL AS homepage,
-  p.Name_Full AS participantTitle, p.Member_AsOf AS participantSince, p.PublicDescription AS description,
-  null AS modified,
-  i.Name AS organization, i.Address AS address, i.City AS city, i.ZipCode AS postalCode, i.State AS province, i.Telephone AS phone, i.Email AS email,
-  p.GBIFmembership, null AS Region, p.MOU2012_Date AS MOU2012_Date
+    SELECT
+      p.participantID AS imsId,
+      c.iso2 AS country,
+      n.name_full AS title,
+      p.name_full AS participantTitle,
+      p.name_short AS abbreviation,
+      n.url AS homepage,
+      p.name_full AS participantTitle,
+      p.member_as_of AS participantSince,
+      p.public_description AS description,
+      null AS modified,
+      i.`name` AS organization,
+      i.address AS address,
+      i.city AS city,
+      i.zip_code AS postalCode,
+      i.state_province AS province,
+      i.telephone AS phone,
+      i.email AS email,
+      p.gbif_membership,
+      null AS Region,
+      p.mou2012_date AS MOU2012_Date
 
-FROM gbifims_Node n
-  JOIN gbifims_Participant p ON n.ParticipantID = p.ParticipantID
-  LEFT JOIN gbifims_Country c ON p.CountryID = c.CountryID
-  LEFT JOIN gbifims_Institution i ON p.InstitutionID = i.InstitutionID
+    FROM gbif_ims_node n
+      JOIN gbif_ims_participant p ON n.participantID = p.participantID
+      LEFT JOIN gbif_ims_country c ON p.countryID = c.countryID
+      LEFT JOIN gbif_ims_institution i ON p.institutionID = i.institutionID
 
-WHERE p.ParticipantID = #{imsId}
+    WHERE p.participantID = #{imsId}
   </select>
 
   <!--
@@ -47,21 +63,38 @@ WHERE p.ParticipantID = #{imsId}
      other associate participant
   -->
   <select id="listContacts" resultType="Contact" resultMap="CONTACT_MAP">
-    SELECT pc.ContactID AS cid, gr.GroupID, pc.ParticipantID, pc.NodeID,
-         c.Name_First AS first_name, c.Name_Last AS last_name, gr.Name AS type,
-         c.Address, c.City, c.ZipCode AS postalCode, ca.ISO2 AS country, i.Name AS organization,
-         c.Email AS email, c.Phone_Office AS phone, c.URL AS homepage,
-         c.Job_Position AS job_position, c.Job_Description AS description,
-         null AS created_by, null AS created,
-         null AS modified_by, null AS modified
-    FROM gbifims_Node n
-    JOIN gbifims_ContactGrouproleNodeParticipant pc ON (n.ParticipantID = pc.ParticipantID OR n.NodeID = pc.NodeID)
-      JOIN gbifims_Contact c ON pc.ContactID = c.ContactID
-      JOIN gbifims_Grouprole gr ON pc.GrouproleID = gr.GrouproleID
-      JOIN gbifims_Group g ON gr.GroupID = g.GroupID AND gr.GroupID in (11,12,13,31)
-      LEFT JOIN gbifims_Country ca ON c.CountryID_Address = ca.CountryID
-      LEFT JOIN gbifims_Institution i ON c.InstitutionID = i.InstitutionID
-    WHERE pc.Active!=0 AND (c.OnTheWeb is null OR c.OnTheWeb!=0) AND n.ParticipantID = #{imsId}
+    SELECT
+      cgrnp.contactID AS cid,
+      gr.groupID AS GroupID,
+      cgrnp.participantID AS ParticipantID,
+      cgrnp.nodeID AS NodeID,
+      c.first_name,
+      c.last_name,
+      gr.`name` AS type,
+      c.address AS Address,
+      c.city AS City,
+      c.zip_code AS postalCode,
+      cou.iso2 AS country,
+      i.`name` AS organization,
+      c.email_address AS email,
+      c.phone_office AS phone,
+      c.profile_url AS homepage,
+      c.job_position AS job_position,
+      c.job_description AS description,
+      null AS created_by,
+      null AS created,
+      null AS modified_by,
+      null AS modified
+    FROM gbif_ims_node n
+      JOIN gbif_ims_contact_group_role_node_participant cgrnp ON (n.participantID = cgrnp.participantID OR n.nodeID = cgrnp.nodeID)
+      JOIN gbif_ims_contact c ON cgrnp.contactID = c.contactID
+      JOIN gbif_ims_group_role gr ON cgrnp.group_role_ID = gr.group_role_ID
+      JOIN gbif_ims_group g ON gr.groupID = g.groupID AND gr.groupID in (11,12,13,31)
+      LEFT JOIN gbif_ims_country cou ON c.countryID_address = cou.countryID
+      LEFT JOIN gbif_ims_institution i ON c.institutionID = i.institutionID
+    WHERE cgrnp.active != 0
+      AND (c.on_the_web IS NULL OR c.on_the_web != 0)
+      AND n.participantID = #{imsId}
     ORDER BY 7,1
   </select>
 
