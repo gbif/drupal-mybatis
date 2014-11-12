@@ -26,6 +26,7 @@ import org.gbif.mybatis.type.UuidTypeHandler;
 
 import java.net.URI;
 import java.util.Date;
+import java.util.Properties;
 import java.util.UUID;
 
 import com.google.inject.Scopes;
@@ -37,8 +38,8 @@ public class InternalDrupalMyBatisModule extends MyBatisModule {
 
   public static final String DATASOURCE_BINDING_NAME = "drupal";
 
-  public InternalDrupalMyBatisModule() {
-    super(DATASOURCE_BINDING_NAME);
+  public InternalDrupalMyBatisModule(Properties props) {
+    super(DATASOURCE_BINDING_NAME, props);
   }
 
   @Override

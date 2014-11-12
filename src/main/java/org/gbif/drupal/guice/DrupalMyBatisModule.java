@@ -22,7 +22,7 @@ public class DrupalMyBatisModule extends PrivateServiceModule {
   @Override
   protected void configureService() {
     // bind classes
-    InternalDrupalMyBatisModule mod = new InternalDrupalMyBatisModule();
+    InternalDrupalMyBatisModule mod = new InternalDrupalMyBatisModule(getProperties());
     install(mod);
 
     // expose named datasource binding
