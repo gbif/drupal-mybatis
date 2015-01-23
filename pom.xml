@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.gbif</groupId>
     <artifactId>motherpom</artifactId>
-    <version>16</version>
+    <version>19</version>
   </parent>
 
   <groupId>org.gbif</groupId>
@@ -32,7 +32,7 @@
 
     <!-- dependency versions -->
     <gbif-common.version>0.17</gbif-common.version>
-    <gbif-api.version>0.16</gbif-api.version>
+    <gbif-api.version>0.17</gbif-api.version>
     <gbif-common-mybatis.version>0.13</gbif-common-mybatis.version>
     <gbif-common-service.version>0.11</gbif-common-service.version>
     <gbif-common-test.version>0.7</gbif-common-test.version>
