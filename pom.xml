@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.gbif</groupId>
     <artifactId>motherpom</artifactId>
-    <version>19</version>
+    <version>23-SNAPSHOT</version>
   </parent>
 
   <groupId>org.gbif</groupId>
@@ -22,7 +22,7 @@
   </scm>
 
   <properties>
-    <jdkLevel>1.7</jdkLevel>
+    <jdkLevel>1.8</jdkLevel>
 
     <!-- datasource defaults -->
     <drupal.db.poolSize>4</drupal.db.poolSize>
