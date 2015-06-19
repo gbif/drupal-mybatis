@@ -31,10 +31,10 @@
     <drupal.db.connectionTimeout>2000</drupal.db.connectionTimeout>
 
     <!-- dependency versions -->
-    <gbif-common.version>0.17</gbif-common.version>
-    <gbif-api.version>0.22</gbif-api.version>
+    <gbif-common.version>0.18-SNAPSHOT</gbif-common.version>
+    <gbif-api.version>0.23-SNAPSHOT</gbif-api.version>
     <gbif-common-mybatis.version>0.16-SNAPSHOT</gbif-common-mybatis.version>
-    <gbif-common-service.version>0.12</gbif-common-service.version>
+    <gbif-common-service.version>0.13-SNAPSHOT</gbif-common-service.version>
     <gbif-common-test.version>0.7</gbif-common-test.version>
     <guava.version>17.0</guava.version>
     <guice.version>3.0</guice.version>
