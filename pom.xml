@@ -22,7 +22,7 @@
   </scm>
 
   <properties>
-    <jdkLevel>1.8</jdkLevel>
+    <jdkLevel>1.7</jdkLevel>
 
     <!-- datasource defaults -->
     <drupal.db.poolSize>4</drupal.db.poolSize>
