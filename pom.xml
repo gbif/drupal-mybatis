@@ -8,7 +8,7 @@
   </parent>
 
   <artifactId>drupal-mybatis</artifactId>
-  <version>0.17</version>
+  <version>0.18-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Drupal :: MyBatis Service</name>
@@ -17,7 +17,7 @@
     <connection>scm:git:git@github.com:gbif/drupal-mybatis.git</connection>
     <url>https://github.com/gbif/drupal-mybatis</url>
     <developerConnection>scm:git:git@github.com:gbif/drupal-mybatis.git</developerConnection>
-    <tag>drupal-mybatis-0.17</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
