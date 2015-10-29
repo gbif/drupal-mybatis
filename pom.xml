@@ -30,9 +30,9 @@
     <drupal.db.connectionTimeout>2000</drupal.db.connectionTimeout>
 
     <!-- dependency versions -->
-    <gbif-common.version>0.18</gbif-common.version>
-    <gbif-api.version>0.27</gbif-api.version>
-    <gbif-common-mybatis.version>0.17</gbif-common-mybatis.version>
+    <gbif-common.version>0.19</gbif-common.version>
+    <gbif-api.version>0.29</gbif-api.version>
+    <gbif-common-mybatis.version>0.18</gbif-common-mybatis.version>
     <gbif-common-service.version>0.14</gbif-common-service.version>
     <gbif-common-test.version>0.7</gbif-common-test.version>
     <guava.version>17.0</guava.version>
@@ -48,6 +48,7 @@
     <dbunit.version>2.4.9</dbunit.version>
     <jsr305.version>1.3.9</jsr305.version>
     <validation-api.version>1.1.0.Final</validation-api.version>
+    <commons-lang3.version>3.4</commons-lang3.version>
   </properties>
 
   <build>
@@ -90,24 +91,6 @@
       <version>${guice.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.zaxxer</groupId>
-      <artifactId>HikariCP-java6</artifactId>
-      <version>${hikaricp.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit-dep</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>${mysql-connector-java.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
       <groupId>org.gbif</groupId>
       <artifactId>gbif-common</artifactId>
       <version>${gbif-common.version}</version>
@@ -128,12 +111,6 @@
       <version>${gbif-common-service.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.gbif</groupId>
-      <artifactId>gbif-common-test</artifactId>
-      <version>${gbif-common-test.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
       <version>${mybatis.version}</version>
@@ -147,6 +124,49 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <version>${jsr305.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>${validation-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3.version}</version>
+    </dependency>
+
+    <!--Runtime dependencies-->
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP-java6</artifactId>
+      <version>${hikaricp.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql-connector-java.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- Test dependencies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.dbunit</groupId>
+      <artifactId>dbunit</artifactId>
+      <version>${dbunit.version}</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -167,31 +187,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.dbunit</groupId>
-      <artifactId>dbunit</artifactId>
-      <version>${dbunit.version}</version>
+      <groupId>org.gbif</groupId>
+      <artifactId>gbif-common-test</artifactId>
+      <version>${gbif-common-test.version}</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>jsr305</artifactId>
-      <version>${jsr305.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>${validation-api.version}</version>
     </dependency>
   </dependencies>
 
-  <profiles>
-    <profile>
-      <id>dev</id>
-      <properties>
-        <drupal.db.host>my1.gbif-dev.org</drupal.db.host>
-        <drupal.db.name>drupal_devel</drupal.db.name>
-        <drupal.db.username>drupal_devel</drupal.db.username>
-      </properties>
-    </profile>
-  </profiles>
 </project>
