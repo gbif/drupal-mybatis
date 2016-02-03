@@ -30,8 +30,8 @@
     <drupal.db.connectionTimeout>2000</drupal.db.connectionTimeout>
 
     <!-- dependency versions -->
-    <gbif-common.version>0.19</gbif-common.version>
-    <gbif-api.version>0.29</gbif-api.version>
+    <gbif-common.version>0.20</gbif-common.version>
+    <gbif-api.version>0.30</gbif-api.version>
     <gbif-common-mybatis.version>0.18</gbif-common-mybatis.version>
     <gbif-common-service.version>0.14</gbif-common-service.version>
     <gbif-common-test.version>0.7</gbif-common-test.version>
