@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.gbif</groupId>
     <artifactId>motherpom</artifactId>
-    <version>23</version>
+    <version>35</version>
   </parent>
 
   <artifactId>drupal-mybatis</artifactId>
@@ -30,13 +30,13 @@
     <drupal.db.connectionTimeout>2000</drupal.db.connectionTimeout>
 
     <!-- dependency versions -->
-    <gbif-common.version>0.20</gbif-common.version>
-    <gbif-api.version>0.30</gbif-api.version>
-    <gbif-common-mybatis.version>0.18</gbif-common-mybatis.version>
-    <gbif-common-service.version>0.14</gbif-common-service.version>
+    <gbif-common.version>0.23</gbif-common.version>
+    <gbif-api.version>0.34</gbif-api.version>
+    <gbif-common-mybatis.version>0.25-SNAPSHOT</gbif-common-mybatis.version>
+    <gbif-common-service.version>0.15-SNAPSHOT</gbif-common-service.version>
     <gbif-common-test.version>0.7</gbif-common-test.version>
     <guava.version>17.0</guava.version>
-    <guice.version>3.0</guice.version>
+    <guice.version>4.0</guice.version>
     <hikaricp.version>2.3.6</hikaricp.version>
     <junit.version>4.11</junit.version>
     <logback.version>1.0.13</logback.version>
